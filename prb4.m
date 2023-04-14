@@ -1,23 +1,25 @@
-clc;
 clear all;
 close all;
-n=[-4:5];
-n1=3;
-n2=-4;
-x=[1,1,2,3,5,8,13,21,34,55];
-[y,m] = sigfold(x,n);
-[y1,m1] = sigshift(y,m,n1);
-[y2,m2] = sigshift(y,m,n2);
-
-subplot(4,1,1);
-stem(n,x);
-title("x[n]");
-subplot(4,1,2);
-stem(m,y);
-title("x[-n]");
-subplot(4,1,3);
-stem(m1,y1);
-title("x[-n-3]");
-subplot(4,1,4);
-stem(m2,y2);
-title("x[-n+4]");
+clc;
+n = 0:6;
+x = [1,1,2,3,5,8,13];
+M = 501;
+w = linspace(-pi, pi, M);
+X = zeros(1, length(w));
+for i1=1:M
+for i2=1:length(x)
+X(i1)=X(i1)+x(i2)*exp(-1i*w(i1)*n(i2));
+end
+end
+subplot(211)
+plot(w, abs(X), 'Linewidth', 2);
+title('Magnitude Spectrum');
+ylabel('|X(w)|');
+xlabel('Frequency(rad/s)');
+grid on
+subplot(212)
+plot(w, angle(X)*180/pi, 'Linewidth', 2);
+title('Phase Spectrum');
+ylabel('Angle of X(w) (degrees)');
+xlabel('Frequency(rad/s)');
+grid on

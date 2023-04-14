@@ -1,18 +1,12 @@
-clc; 
-close all; 
+clc;
 clear all;
-Fo = 100; 
-To = 1/Fo; 
-Fs = 800; 
-Ts = 1/Fs;
-tc = 0:To/100:3*To; 
-xc = 5*cos(200*pi*tc); 
-ts = 0:Ts:3*To;
-xs = 5*cos(200*pi*ts); 
-xr=interp1(ts,xs,tc); 
-subplot(211) 
-plot(tc,xc,'g','Linewidth',2);%Original Signal 
-hold on 
-plot(tc,xr,'r','Linewidth',2); %Reconstructed Signal 
-hold on 
-stem(ts,xs,'b','Linewidth',2);
+close all;
+N1=[1,-1.22346,1];
+N2=[1,-0.437833,1];
+N3=[1,1,0];
+D1=[1,-1.4334509,0.85811];
+D2=[1,-1.293601,0.556929];
+D3=[1,-0.612159,0];
+sos=[N1 D1;N2 D2;N3 D3];
+[b,a]=sos2tf(sos);
+[c,p,k]=residuez(b,a)
