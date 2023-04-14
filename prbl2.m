@@ -1,0 +1,22 @@
+close all;
+clear all;
+clc;
+nx=[-2:2];
+x=[4,2,5,3,4];
+ny=[-2:2];
+y=[2,3,1,8,6];
+[y1,ny1]= sigadd(nx,x,ny,y);
+[x1,nx1]=sigfold(y1,ny1);
+subplot(4,1,1);
+stem(nx,x);
+title("x signal");
+subplot(4,1,2);
+stem(ny,y);
+title("y signal");
+subplot(4,1,3);
+stem(ny,y1);
+title("add signal");
+subplot(4,1,4);
+stem(ny,x1);
+title("fold signal");
+

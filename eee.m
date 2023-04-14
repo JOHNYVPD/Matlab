@@ -1,0 +1,10 @@
+clear all;
+close all;
+clc;
+A=[30 -10 -20;-10 60 -30;-20 -30 60];
+C=A/10;
+B=[1;0;6];
+y=inv(C)*B;
+display(C);
+display(B);
+display(y);
